@@ -1,11 +1,12 @@
 import abc
+from typing import List
 
 from constantes import TAMANHO_PADRAO_MAXIMO, TAMANHO_PADRAO_MINIMO
 
 class FilaBase(metaclass=abc.ABCMeta): #classe abstrada
     codigo: int = 0
-    fila = []
-    cliente_atendidos = []
+    fila: List[str] = []
+    cliente_atendidos: List[str] = []
     senha_atual: str = ""
 
     def reseta_fila(self) -> None:
