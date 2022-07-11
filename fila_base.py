@@ -1,5 +1,7 @@
 import abc
 
+from constantes import TAMANHO_PADRAO_MAXIMO, TAMANHO_PADRAO_MINIMO
+
 class FilaBase(metaclass=abc.ABCMeta): #classe abstrada
     codigo: int = 0
     fila = []
@@ -7,8 +9,8 @@ class FilaBase(metaclass=abc.ABCMeta): #classe abstrada
     senha_atual: str = ""
 
     def reseta_fila(self) -> None:
-        if self.codigo >= 200:
-            self.codigo = 0
+        if self.codigo >= TAMANHO_PADRAO_MAXIMO:
+            self.codigo = TAMANHO_PADRAO_MINIMO
         else:
             self.codigo += 1
 
