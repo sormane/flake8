@@ -1,21 +1,22 @@
 from fila_base import FilaBase
 
+
 class FilaPrioritaria(FilaBase):
 
-    def gera_senha_atual(self)-> None:
+    def gera_senha_atual(self) -> None:
         self.senha_atual = f'PR{self.codigo}'
 
-    def atualiza_fila(self)-> None:
+    def atualiza_fila(self) -> None:
         self.reseta_fila()
         self.gera_senha_atual()
         self.fila.append(self.senha_atual)
 
-    def chama_cliente(self, caixa:int)-> str:
+    def chama_cliente(self, caixa: int) -> str:
         cliente_atual = self.fila.pop(0)
         self.cliente_atendidos.append(cliente_atual)
-        return (f'Cliente atual: {cliente_atual}, dirija-se ao caixa: {caixa}')
+        return f'Cliente atual: {cliente_atual}, dirija-se ao caixa: {caixa}'
 
-    def estatistica(self, dia: str, agencia: int, flag: str)-> dict:
+    def estatistica(self, dia: str, agencia: int, flag: str) -> dict:
         if flag != 'detail':
             estatistica = {f'{agencia}-{dia}': len(self.cliente_atendidos)}
         else:
@@ -23,6 +24,8 @@ class FilaPrioritaria(FilaBase):
             estatistica['dia'] = dia
             estatistica['agencia'] = agencia
             estatistica['clientes atendidos'] = self.cliente_atendidos
-            estatistica['quantidade clientes atendidos'] = len(self.cliente_atendidos)
+            estatistica['quantidade clientes atendidos'] = (
+                len(self.cliente_atendidos)
+            ) #Colocou dentro dos parenteses para diminuir a linha
 
         return estatistica
